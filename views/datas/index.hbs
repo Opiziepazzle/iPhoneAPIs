@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/bd573a16ad.js" crossorigin="anonymous"></script>
+</head>
+{{!-- style="background-image: url(images/IMG-6971.jpg)" --}}
+<body>
+
+    <div id="header" style="background-image: url(images/IMG-6971.JPG)";  >
+        <div class="container">
+            <nav>
+                <a href="/"><img src="images/IMG-5071.jpg" class="logo"></a>
+                {{!-- <h1><span>H</span>akeem.</h1> --}}
+                <ul id="sidemenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times" onclick="closemenu()"></i>
+
+                </ul>
+                <i class="fas fa-bars" onclick="openmenu()"></i>
+            </nav>
+            <div class="header-text">
+                <p>WEB DEVELOPER.</p>
+                <h1>Hi, I'm <span> Hakeem</span> <br> Adigun from Nigeria.</h1>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+    <!-- -------About Me-----  -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/IMG-4014.jpg" alt="">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-tittle">About Me</h1> <br>
+                    <p>Hi 👋, my name is Hakeem. I'm a Backend Developer. I build
+                        and maintain complex web applications. I have a strong passion for
+                        coding and solving complex problems to deliver efficient and scalable solutions. <br><br>
+
+                        I specialize in using Nodejs to develop backend systems and APIs. I
+                        enjoy working with databases such as MySQL and MongoDB to ensure the quality and integrity
+                        of data within the applications. <br><br>
+
+                        My experience includes working with Express as framework to build web applications from the
+                        ground up. I also have experience in designing and implementing RESTful APIs and microservices
+                        architectures. <br><br>
+
+                        I believe in continuously learning and staying up-to-date with the latest technologies and
+                        trends in the industry. I'm a team player and love working collaboratively to develop
+                        robust and maintainable applications. <br><br>
+
+                        In summary, I'm a dedicated Backend Developer who is passionate about building high-quality,
+                        scalable and efficient web applications. I'm always excited to take on new challenges and work
+                        collaboratively with my team to deliver the best possible product. <br>
+                    </p><br>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('experience')">Experience</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Frontend </span><br>HTML, Css, JavaScript, Git & GitHub.</li>
+                            <li><span>CSS Framework</span><br>Bootstrap  & Bulma</li>
+                            <li><span>Library</span><br>JQuery, React </li>
+                            <li><span>Backend</span><br>API Nodejs/Express </li>
+                           <li><span>DataBase</span><br>MongoDB, MySQL </li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>Frontend Developer</span><br>Web Developoment </li>
+                 <li><span>API Designing</span><br>API </li>
+                            <li><span>Database Management</span><br>MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            {{!-- <li><span>Secondary Education</span><br>Ajogbo Grammar School </li> --}}
+                            <li><span>Tertiary Institution</span><br>Olabisi Onabanjo University </li>
+                            <li><span>Tech </span><br> Codar Institute</li>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!------Services------->
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Server-side Programming</h2>
+                    <p>I Develop Web Applications that run on servers, which requires handling issues like server
+                        scalability, performance and security.</p>
+                    <a href="">Learn more</a>
+
+
+
+                </div>
+                <div>
+                    <i class="fas fa-crop-alt"></i>
+                    <h2>API <br> Development</h2>
+                    <p>Creating a clean and effective API that communicates between your Application backend, and the
+                        client-facing frontend.</p>
+                    <a href="">Learn more</a>
+
+
+
+                </div>
+                <div>
+                    <i class="fa-sharp fa-solid fa-arrows-to-circle"></i>
+                    <h2>Database Design and Management</h2>
+                    <p>I Design and Manage Database related to Web Applications .</p>
+                    <a href="">Learn more</a>
+
+
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <!-----PORTFOLIO-->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+
+                <div class="work">
+                    {{!-- <img src="images/hero-carousel-5.jpg"> --}}
+                    <img src="images/IMG-69577.jpg">
+                    <div class="layer">
+                        <h3>Construction Company Web App</h3>
+                        <p>UpConstruction is a construction company. <br> The App allow Customers send message and also
+                            make enquiries about the organization.
+                            I handled the Backend using Nodejs, Express, Handlebars & MongoDB. </p>
+                        <a href="https://upconstruction-production.up.railway.app"><i
+                                class="fas fa-external-link-alt"></i> </a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="images/about-2.jpg">
+                    <div class="layer">
+                        <h3>Job Vacancy Web App</h3>
+                        <p>Jobentry is an organizatrion that help you find the best startup jobs that fit you.
+                            I handled the Backend using Nodejs, Express, Handlebars & MongoDB. </p>
+                        <a href="https://jobentry.up.railway.app"><i class="fas fa-external-link-alt"></i> </a>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="images/Screenshotcalc.png">
+                    <div class="layer">
+                        <h3>Calculator App</h3>
+                        <p>The App helps you to do some Calculations.
+                            it's made with HTML CSS & JAVASCRIPT</p>
+                        <a href="https://mycalculator.up.railway.app"><i class="fas fa-external-link-alt"></i> </a>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <a href="/sample" class="btn">See more</a>
+            {{!-- <button onclick="showProjects()" class="btn">See more</button> --}}
+        </div>
+
+    </div>
+    <!-----PORTFOLIO-->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+
+
+                <div class="contact-left">
+                    <h1 class="sub-tittle">Contact Me</h1>
+                    <p> <i class="fas fa-paper-plane"></i> opizie47@gmail.com</p>
+                    <p><i class="fas fa-phone-square-alt"></i> 07066832964</p>
+                    <div class="social-icon">
+                        <a href="https://facebook.com/adigun.akeem2"><i class="fab fa-facebook"></i></a>
+                        <a href="https://twitter.com/opiziepazzle"><i class="fab fa-twitter-square"></i></a>
+                        <a href="https://instagram.com/optimistic_opiziepazzle"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/in/adigun-opeyemi-628453233"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <a href="images/" download class="btn btn2">Download CV</a>
+
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet" action="/" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" row="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <script src="js/{{main}}"></script>
+
+</body>
+
+</html>

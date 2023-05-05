@@ -1,74 +1,104 @@
 const express = require('express')
-const request = require('request-promise')
-
 const app = express()
-const PORT = process.env.PORT || 6070
+const PORT = process.env.PORT || 4030
+const fs = require('fs')
+const path = require('path')
+const mongoose = require('mongoose')
+const cors = require('cors')
+const bodyParser = require ('body-parser')
+const Clients = require('./model/Clients')
+// const simpleBlogrouter = require('./routes/simpleBlogrouter')
 
 
 
-const generateScraperUrl = (apiKey) => `http://api.scraperapi.com?api_key=${apiKey}&autoparse=true`;
+
+const dotenv = require('dotenv')
+ const dotenvb = require('dotenv').config()
+
+ app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
+ app.use(express.static(path.join(__dirname, "public")));
+ 
+const { engine } = require('express-handlebars');
+app.engine('hbs', engine({ extname: '.hbs', defaultLayout: "main" }));
+app.set('view engine', 'hbs');
+
+// const exphbs  = require('express-handlebars');
+
+// app.engine('hbs', exphbs({
+//     extname: '.hbs', // extension of the files
+//     defaultLayout: 'main', // default layout template
+//     layoutsDir: path.join(__dirname, 'views/layouts'), // directory for layout templates
+//     partialsDir: path.join(__dirname, 'views/partials') // directory for partial templates
+// }));
+
+// app.set('view engine', 'hbs');
+
+mongoose.set("strictQuery", false);
+
+ const uri = "mongodb+srv://adigun:hakeem@cluster0.ncmalbd.mongodb.net/Portfolio?retryWrites=true&w=majority";
 
 
-//allow app to pass json input
-app.use(express.json())
+const connectionParams = {
+    useNewUrlParser: true,
+    //  useCreateIndex: false,
+    useUnifiedTopology: true,
+  };
+  
+  mongoose
+    .connect(uri, connectionParams)
+    .then((data) => {
+      console.log("DATABASE CONNECTION SET");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 
 
-app.get('/', (req, res, next)=>{
-    res.send('Welcome to Amazon Scraper API')
+    app.use(cors())
+
+// app.use('/api', Clients)
+
+
+app.get("/", (req, res) =>{
+    res.render("datas/index", {
+        styles: "styles.css",
+        main: "main.js"
+    })
 })
 
-//GET GET product Details
-app.get('/products/:productId', async (req, res)=>{
-    const {productId} = req.params;
- const {api_key} = req.query;
-    try{
- const response = await request(`${generateScraperUrl(api_key)}&url=http://www.amazon.com/dp/${productId}`)
-res.json(JSON.parse(response))
-    }catch(error){
-res.json(error)
-    }
+//sample
+app.get("/sample", (req, res) =>{
+  res.render("datas/sample", {
+      styles: "styles.css",
+      main: "main.js"
+  })
 })
 
+app.post("/", async  (req, res)=>{
 
-//GET Product Reviews
-app.get('/products/:productId/reviews', async (req, res)=>{
-    const {productId} = req.params;
-    //  const {api_key} = req.query;
+          
+    try {
+        const portfolio = await Clients.create({
+         name: req.body.name,
+          email: req.body.email,
+          message: req.body.message,
+        });
+        await portfolio.save();
+        res.redirect("/");
+      } catch (e) {
+        res.status(400).json({
+        status : 400,
+         message: 'data failed request ',
+         data: e.message
+         })
+        console.log(e.message);
+      }
+    })
+    
+    
 
-    try{
- const response = await request(`${generateScraperUrl(api_key)}&url=http://www.amazon.com/product-reviews/${productId}`)
-res.json(JSON.parse(response))
-    }catch(error){
-res.json(error)
-    }
-})
-
-
-//GET Product Offers
-app.get('/products/:productId/offers', async (req, res)=>{
-    const {productId} = req.params;
-    const {api_key} = req.query;
-
-    try{
- const response = await request(`${generateScraperUrl(api_key)}&url=http://www.amazon.com/gp/offer-listing/${productId}`)
-res.json(JSON.parse(response))
-    }catch(error){
-res.json(error)
-    }
-})
-
-
-//GET Search Result
-app.get('/search/:searchQuery', async (req, res)=>{
-    const {searchQuery} = req.params;
-   const {api_key} = req.query;
-
-    try{
- const response = await request(`${generateScraperUrl(api_key)}&url=http://www.amazon.com/s?k=${searchQuery}`)
-res.json(JSON.parse(response))
-    }catch(error){
-res.json(error)
-    }
-})
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+app.listen(PORT, () => {
+    console.log(`Server started running on port ${PORT}`);
+  });
